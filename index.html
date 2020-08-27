@@ -110,19 +110,23 @@
 	var weekDiv = document.getElementById('week')
 	var prompted = document.getElementById('prompted')
 	var timer = null
+	var timer2 = null
 	dateDiv.innerHTML = parseTime(time, '{y}-{m}-{d}')	
 	weekDiv.innerHTML = parseTime(time, '{a}')
 	timeDiv.innerHTML = parseTime(time, '{h}:{i}:{s}')
-	if (timer) {
+	if (timer || timer2) {
 		clearInterval(timer)
+		clearInterval(timer2)
 	}
 	timer = setInterval(() => {
 	  time = new Date()
-	  dateDiv.innerHTML = parseTime(time, '{y}-{m}-{d}')	
-	  weekDiv.innerHTML = parseTime(time, '{a}')
 	  timeDiv.innerHTML = parseTime(time, '{h}:{i}:{s}')
 	}, 1000)
-
+	timer2 = setInterval(() => {
+		time = new Date()	
+		dateDiv.innerHTML = parseTime(time, '{y}-{m}-{d}')	
+	  	weekDiv.innerHTML = parseTime(time, '{a}')
+	}, 1000*60*60)		
 
 	
 	function timeClick() {
